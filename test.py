@@ -16,6 +16,10 @@ soup = BeautifulSoup(r.text, "html.parser")
 elements = soup.find_all('ul')
 
 
-
-for i in elements:
-    print(i)
+for ul_element in elements:
+    #extraire lien produit 
+    liens_href = [a['href'] for a in ul_element.find_all('a')]
+    
+    # Afficher les liens extraits
+    for lien in liens_href:
+        print(lien)

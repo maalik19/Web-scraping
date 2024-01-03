@@ -12,11 +12,11 @@ r = requests.get(url)
 soup = BeautifulSoup(r.text, "html.parser")
 #print(soup)
 
-div = soup.find_all("div", {"class": "page tRkeN"})
+div = soup.find_all("div", {"id": "catlogProductsList"})
 print(div)
 
 
-elements = soup.find_all('ul', {"class": "LSqil"})
+elements = soup.find_all('ul')
 print(elements)
 '''
 for ul_element in elements:

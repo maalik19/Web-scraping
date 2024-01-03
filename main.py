@@ -2,10 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
 import json
-"""selectolax
-playwright
-scrapy
-httpx"""
+
 
 
 url = "https://shop.mango.com/qa-en/women"
@@ -13,10 +10,9 @@ r = requests.get(url)
 
 # Extraire le code HTML de r 
 soup = BeautifulSoup(r.text, "html.parser")
-#print(r.text)
 #print(soup)
 
-
+#date
 date_web_scraping = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 print(date_web_scraping )
 results = []
@@ -37,7 +33,7 @@ for link in links:
     if (link != "https://shop.mango.com#nolink") and (link != "https://shop.mango.com/qa-en/teen") and (link != "https://shop.mango.com/qa-en/kids") and (link != "https://shop.mango.com/qa-en/men") :  # Skip the specific link
         try:
             response = requests.head(link, allow_redirects=True)
-            response.raise_for_status()  # Raise an exception for non-200 status codes
+            response.raise_for_status()  #  exception non-200 
             valid_links.append(link)
         except requests.exceptions.RequestException as e:
             print(f"Invalid link: {link} ({e})")
@@ -52,7 +48,6 @@ for link in valid_links:
 
 '''
 for link in links:
-    article_url = "https://shop.mango.com" + link
     article_response = requests.get(article_url)
     article_soup = BeautifulSoup(article_response.content, 'html.parser')
     

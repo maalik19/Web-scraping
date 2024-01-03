@@ -28,11 +28,13 @@ elements = soup.find_all("div", class_="no-js", id="vsvhome")
 links = []
 for element in elements:
     for link in (a['href'] for a in element.find_all('a', href=True)):  
-        links.append("https://shop.mango.com" + link)
+        if (link == "//shop.mango.com/redirect.faces?op=conta&externa=CATSHE112021MANGOGIRLS") or (link =="//shop.mango.com/redirect.faces?op=conta&seccion=rebajas_she&tiendaid=she"):
+            links.append("https:"+link)
+        else: links.append("https://shop.mango.com" + link)
 
 valid_links = []
 for link in links:
-    if link != "https://shop.mango.com#nolink":  # Skip the specific link
+    if (link != "https://shop.mango.com#nolink") and (link != "https://shop.mango.com/qa-en/teen") and (link != "https://shop.mango.com/qa-en/kids") and (link != "https://shop.mango.com/qa-en/men") :  # Skip the specific link
         try:
             response = requests.head(link, allow_redirects=True)
             response.raise_for_status()  # Raise an exception for non-200 status codes
